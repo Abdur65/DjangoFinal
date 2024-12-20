@@ -6,4 +6,10 @@ class Event(models.Model):
     description = models.TextField(blank=True)
     location = models.CharField(max_length=200)
     date_time = models.DateTimeField()
+    capacity = models.IntegerField()
     
+    status = {
+            'upcoming': 'Upcoming',
+            'ongoing': 'Ongoing',
+            'completed': 'Completed',
+    }
