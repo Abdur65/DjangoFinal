@@ -5,10 +5,11 @@ from django.views import View
 from django.views.generic import ListView, CreateView, FormView
 
 from events.models import Event
-from events.serializers import Event
+from events.serializers import EventSerializer
 
 
-from rest_framework import permissions
+from rest_framework import permissions, status
+from rest_framework.views import APIView
 from rest_framework.response import Response
 
 # Event views
@@ -29,7 +30,7 @@ class EventListCreate(APIView):
     def get(self, request):
         print(request.user)
         event = Event.objects.all()
-        serializer = EventSerializer(books, many=True)
+        serializer = EventSerializer(event, many=True)
         return Response(serializer.data)
     
     def post(self, request):

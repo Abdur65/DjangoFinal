@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Form</title>
+</head>
+<body>
+    <h1>Create an Event</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create</button>
+    </form>
+
+    {% if form.errors %}
+      <div>
+        <ul>
+            {% for field, errors in form.errors.items %}
+              {% for error in errors %}
+                <li>
+                    {{field|capfirst}}: {{ error }}
+                </li>
+              {% endfor %}
+            {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+</body>
+</html>
